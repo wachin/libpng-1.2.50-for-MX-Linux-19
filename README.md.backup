@@ -49,7 +49,7 @@ Solución:
 
 ln -s (Lugar donde existe físicamente el objetivo o blanco) (Destino, nombre del enlace simbólico a crear)
 
-	sudo ln -s /usr/lib/libpng12.so.0.50.0 /usr/lib/i386-linux-gnu/libpng12.so
+sudo ln -s /usr/local/bin/ksnip /usr/lib/i386-linux-gnu/
 
 
 
