@@ -1,6 +1,12 @@
 
 # Corregir la ubicación de la librería libpng12.so.0 para MX Linux 19 (Debian 10 Buster)
 
+Tengo en esta carpeta el instalador .deb:
+
+libpng12-0_1.2.50-2+deb8u3_i386.deb
+
+Para lo siguiente he usado Gdebi como editor de archivos por lo que hay que instalarlo:
+
 	sudo apt installl gedit
 
 Descomprimir el contenido del instalador .deb poner en la terminal:
