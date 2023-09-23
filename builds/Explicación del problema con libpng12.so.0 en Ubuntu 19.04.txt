@@ -1,0 +1,34 @@
+
+Can not install libpng12.so.0 on Ubuntu 19.04 for Packet Tracert 7 [duplicate]
+https://askubuntu.com/a/1145412
+
+I finally got what was causing the error, and fixed it.
+
+You can download the new packages here:
+
+    https://www.dropbox.com/s/79x3imq73tcqyw4/libpng12-0_1.2.54-1ubuntu1b_amd64.deb?dl=0 https://www.dropbox.com/s/yhk1p83b2e7rvt4/libpng12-0_1.2.54-1ubuntu1b_i386.deb?dl=0
+
+So, basically the problem comes from the architecture of the packet and the architecture of Ubuntu's /lib and /usr/lib folders. On the previous releases /lib and /usr/lib were 2 distinct folders, but on Ubuntu 19.04 /lib is a symlink to /usr/lib.
+
+Now, take libpng12-0_1.2.54-1ubuntu1_amd64.deb as an example.
+This is the deb architecture (I'll show only the binaries):
+
+    /lib/x86_64-linux-gnu/libpng12.so.0 (symlink)
+    /lib/x86_64-linux-gnu/libpng12.so.0.54.0
+    /usr/lib/x86_64-linux-gnu/libpng12.so.0 (symlink)
+
+This creates a conflict when unpacking in Ubuntu 19.04 because it tries to write two times libpng12.so.0 at the same place, which is impossible with apt.
+
+What I did is simply a repacking of the files with this architecture:
+
+    /usr/lib/x86_64-linux-gnu/libpng12.so.0 (symlink)
+    /usr/lib/x86_64-linux-gnu/libpng12.so.0.54.0
+
+If you don't trust my packages (and I would understand), you can simply compare the checksums of the files with those from the original packet.
+ 
+
+Can not install libpng12.so.0 on Ubuntu 19.04 for Packet Tracert 7 [duplicate]
+https://askubuntu.com/a/1138174
+
+Download libpng12-0_1.2.54-1ubuntu1.1_amd64.deb, extract it, then copy libpng12.so.0, libpng12.so.0.54.0 from data.tar.gz folder to /usr/lib/x86_64-linux-gnu/
+
